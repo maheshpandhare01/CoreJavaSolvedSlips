@@ -1,0 +1,597 @@
+Slip No=1
+
+A) Write a ‘java’ program to display characters from ‘A’ to ‘Z’.
+
+
+//Class name and java file name should same
+public class slip1A{
+//Program for display characters from A to Z
+public static void main(String[] args){
+for(char ch='A';ch<='Z';ch++){
+System.out.print(ch+" ");
+}}}
+
+
+B)Write a ‘java’ program to copy only non-numeric data from one file to another file.
+
+
+import java.io.*;
+public class slip1B{
+public static void main(String[] args) throws IOException{
+        //You should create onefile.txt file first another file automatically creates.
+        String sourceFile="onefile.txt";
+        String destinationFile="anotherfile.txt";
+        FileInputStream input = new FileInputStream(sourceFile);
+        FileOutputStream output = new FileOutputStream(destinationFile);
+        int data;
+        while((data=input.read())!=-1){
+            if(!Character.isDigit((char) data)) {
+                output.write(data);
+            } 
+        }
+        input.close();
+        output.close();
+        System.out.println("Non-numeric data Copied");
+    }
+}
+
+Slip No=2
+
+A) Write a java program to display all the vowels from a given string
+
+
+//Class name and java file name should same
+import java.util.Scanner;
+public class slip2A{
+public static void main(String[] args){
+Scanner scanner=new Scanner(System.in);
+System.out.print("Enter a string: ");
+String str=scanner.nextLine();
+int i =0;
+while (i<str.length()){
+char ch =str.charAt(i);
+if(ch=='a'||ch=='e'||ch=='i'||ch=='o'||ch=='u'){
+System.out.print(ch + " ");
+}
+i++;
+}
+}
+}
+
+B) Design a screen in Java to handle the Mouse Events such as MOUSE_MOVED and MOUSE_CLICK and display the position of the Mouse_Click in a TextField.  
+
+
+
+import java.awt.*;
+import java.awt.event.*;
+import javax.swing.*;
+public class slip2B extends JFrame {
+    public JTextField positionTextField;
+    public slip2B() {
+        setTitle("Mouse Event Handling");
+        setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+        // Create components
+        JPanel mainPanel = new JPanel();
+        mainPanel.setLayout(new FlowLayout());
+        JLabel instructionLabel = new JLabel("Click anywhere on the screen to display the mouse position:");
+        mainPanel.add(instructionLabel);
+        positionTextField = new JTextField(10);
+        mainPanel.add(positionTextField);
+        add(mainPanel);
+        pack();
+        setVisible(true);
+        // Add mouse event listener
+        addMouseListener(new MouseAdapter() {
+            @Override
+            public void mouseClicked(MouseEvent e) {
+                int x = e.getX();
+                int y = e.getY();
+                String positionText = String.format("(%d, %d)", x, y);
+                positionTextField.setText(positionText);
+            }
+        });
+    }
+
+    public static void main(String[] args) {
+        new slip2B();
+    }
+}
+
+Slip No=3
+
+A) Write a ‘java’ program to check whether given number is Armstrong or not. (Use static keyword)
+
+import java.util.Scanner;
+public class slip3A{
+static void isarmstrong(int num) {
+int a,sum=0;
+int temp=num;
+while(num>0){
+a=num%10;
+sum=sum+(a*a*a);
+num=num/10;
+}
+if(sum==temp){
+System.out.println("Given Number is Armstrong");
+}else{
+System.out.println("Given Number is Not Armstrong");
+}
+}
+public static void main(String[] args) {
+Scanner scanner=new Scanner(System.in);
+System.out.print("Enter a number: ");
+int num=scanner.nextInt();
+isarmstrong(num);
+}
+}
+
+B)Define an abstract class Shape with abstract methods area () and volume (). Derive abstract class Shape into two classes Cone and Cylinder. Write a java Program to calculate area and volume of Cone and Cylinder.(Use Super Keyword.)
+
+
+
+abstract class Shape {
+    double radius, height;
+    public Shape(double radius, double height) {
+        this.radius = radius;
+        this.height = height;
+    }
+    abstract double area();
+    abstract double volume();
+}
+class Cone extends Shape {
+    public Cone(double radius, double height) {
+        super(radius, height);
+    }
+    @Override
+    double area() {
+        return Math.PI * radius * (radius + height);
+    }
+    @Override
+    double volume() {
+        return (1d / 3) * Math.PI * radius * radius * height;
+    }
+}
+class Cylinder extends Shape {
+    public Cylinder(double radius, double height) {
+        super(radius, height);
+    }
+    @Override
+    double area() {
+        return 2 * Math.PI * radius * (radius + height);
+    }
+    @Override
+    double volume() {
+        return Math.PI * radius * radius * height;
+    }
+}
+public class slip3B {
+    public static void main(String[] args) {
+        Cone cone = new Cone(5, 10);
+        double coneArea = cone.area();
+        double coneVolume = cone.volume();
+        System.out.println("Cone Area: " + coneArea);
+        System.out.println("Cone Volume: " + coneVolume);
+        Cylinder cylinder = new Cylinder(4, 8);
+        double cylinderArea = cylinder.area();
+        double cylinderVolume = cylinder.volume();
+        System.out.println("Cylinder Area: " + cylinderArea);
+        System.out.println("Cylinder Volume: " + cylinderVolume);
+    }
+}
+
+Slip No=4
+
+A) Write a java program to display alternate character from a given string.
+
+
+import java.util.Scanner;
+public class slip4A{
+public static void main(String[] args){
+Scanner scanner=new Scanner(System.in);
+System.out.print("Enter String: ");
+String str=scanner.nextLine();
+int len=str.length();
+for(int i=0;i<len;i+=2){
+System.out.print(str.charAt(i));
+}
+}
+}
+
+B) Write a java program using Applet to implement a simple arithmetic calculator.
+
+Slip No=5
+
+A) Write a java program to display following pattern: 
+
+5
+4 5
+3 4 5
+2 3 4 5
+1 2 3 4 5
+
+
+public class slip5A{
+public static void main(String[] args){ 
+for(int i=5;i>=1;i--) {
+for(int j=i;j<=5;j++) {
+System.out.print(j+" ");
+}
+System.out.println(); 
+}
+}
+}
+
+B)Write a java program to accept list of file names through command line. Delete the files having extension .txt. Display name, location and size of remaining files.
+
+
+import java.io.File;
+public class slip5B {
+    public static void main(String[] args) {
+        // Accept file names from command line arguments
+        for (String fileName : args) {
+            File file = new File(fileName);
+
+            if (file.isFile()) {
+                // Check if the file has the extension ".txt"
+                if (fileName.endsWith(".txt")) {
+                    // Delete the file if it has the extension ".txt"
+                    if (file.delete()) {
+                        System.out.println("Deleted file: " + fileName);
+                    } else {
+                        System.out.println("Failed to delete file: " + fileName);
+                    }
+                } else {
+                    // Display details of remaining files
+                    System.out.println("File Name: " + file.getName());
+                    System.out.println("Location: " + file.getAbsolutePath());
+                    System.out.println("Size: " + file.length() + " bytes");
+                }
+            }
+        }
+    }
+}
+
+Slip No=6
+
+A) Write a java program to accept a number from user, if it zero then throw user defined Exception “Number Is Zero”, otherwise calculate the sum of first and last digit of that number. (Use static keyword).
+
+import java.util.Scanner;
+
+class NumberIsZeroException extends Exception {
+
+    public NumberIsZeroException() {
+        super("Number is zero");
+    }
+}
+public class slip6A{
+    static int sumOfFirstAndLastDigit(int number) throws NumberIsZeroException {
+        if (number==0){
+            throw new NumberIsZeroException();
+        }
+        int firstdig=number%10;
+        int lastdig=number;
+        while(number>=10) {
+            number=number/10;
+            lastdig=number;
+        }
+        return firstdig+lastdig;
+    }
+    public static void main(String[] args) {
+        Scanner scanner=new Scanner(System.in);
+        System.out.print("Enter a number: ");
+        int number=scanner.nextInt();
+        try{
+        int sum=sumOfFirstAndLastDigit(number);
+        System.out.println("The sum of first and last digit of the number is: " + sum);
+        }catch(NumberIsZeroException e) {
+        System.out.println(e.getMessage());
+        }
+    }
+}
+
+B) Write a java program to display transpose of a given matrix.
+
+
+
+import java.util.Scanner;
+public class slip6B{
+public static void main(String[] args) {
+Scanner scanner=new Scanner(System.in);
+System.out.print("Enter Number of Rows You want in a Matrix: ");
+int rows=scanner.nextInt();
+System.out.print("Enter Number of Columns You want:");
+int columns=scanner.nextInt();
+int[][] matrix=new int[rows][columns];
+System.out.println("Enter the elements of the matrix: ");
+for(int i=0;i<rows;i++){
+    for(int j=0;j<columns;j++){
+        matrix[i][j]=scanner.nextInt();
+    }
+}
+for(int i=0;i<columns;i++){
+    for(int j=0;j<rows;j++){
+        System.out.print(matrix[j][i]);
+}
+System.out.println();
+}
+}
+}
+
+Slip No=7
+
+A) Write a java program to display Label with text “Dr. D Y Patil College”, background color Red and font size 20 on the frame.
+
+
+
+import java.awt.*;
+import javax.swing.*;
+public class slip7A{
+public static void main(String[] args){
+JFrame frame=new JFrame("Label Demo");
+frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+JLabel label=new JLabel("Dr. D Y Patil College", SwingConstants.CENTER);
+label.setBackground(Color.RED);
+label.setFont(new Font("Serif", Font.PLAIN, 20));
+label.setOpaque(true);
+frame.add(label);
+frame.pack();
+frame.setVisible(true);
+}
+}
+
+B) Write a java program to accept details of ‘n’ cricket player (pid, pname, totalRuns, InningsPlayed, NotOuttimes). Calculate the average of all the players. Display the details of player having maximum average. (Use Array of Object)
+
+
+
+
+import java.util.*;
+
+class CricketPlayer {
+    int pid;
+    String pname;
+    int totalRuns;
+    int inningsPlayed;
+    int notOuttimes;
+
+    public CricketPlayer(int pid, String pname, int totalRuns, int inningsPlayed, int notOuttimes) {
+        this.pid = pid;
+        this.pname = pname;
+        this.totalRuns = totalRuns;
+        this.inningsPlayed = inningsPlayed;
+        this.notOuttimes = notOuttimes;
+    }
+
+    double getAverage() {
+        return (double) totalRuns / (inningsPlayed - notOuttimes);
+    }
+}
+
+public class slip7B{
+
+    public static void main(String[] args) {
+        Scanner scanner = new Scanner(System.in);
+
+        System.out.print("Enter the number of players: ");
+        int n = scanner.nextInt();
+
+        CricketPlayer[] players = new CricketPlayer[n];
+        
+        for (int i = 0; i < n; i++) {
+            System.out.print("Enter player " + (i + 1) + " details: ");
+            System.out.println("\nEnter Player ID: ");
+            int pid = scanner.nextInt();
+            System.out.println("Enter Player Name: ");
+            String pname = scanner.next();
+            System.out.println("Enter Total Runs: ");
+            int totalRuns = scanner.nextInt();
+            System.out.println("Enter innings played: ");
+            int inningsPlayed = scanner.nextInt();
+            System.out.println("Enter Not out Times: ");
+            int notOuttimes = scanner.nextInt();
+
+            players[i] = new CricketPlayer(pid, pname, totalRuns, inningsPlayed, notOuttimes);
+        }
+
+        // Calculate the average of all the players
+        double average = 0;
+        for (int i = 0; i < n; i++) {
+            average += players[i].getAverage();
+        }
+        average /= n;
+
+        // Find the player with maximum average
+        CricketPlayer maxPlayer = players[0];
+        for (int i = 1; i < n; i++) {
+            if (players[i].getAverage() > maxPlayer.getAverage()) {
+                maxPlayer = players[i];
+            }
+        }
+
+        // Display the details of the player with maximum average
+        System.out.println("Player with maximum average: ");
+        System.out.println("Player ID: " + maxPlayer.pid);
+        System.out.println("Player name: " + maxPlayer.pname);
+        System.out.println("Average: " + maxPlayer.getAverage());
+    }
+}
+
+
+
+Slip No=8
+
+A) Define an Interface Shape with abstract method area(). Write a java program to calculate an area of Circle and Sphere.(use final keyword)
+
+
+interface Shape {
+  void area();
+}
+
+class Circle implements Shape {
+  final float PI = 3.14f;
+  float radius;
+
+  public void area() {
+    float area = PI * radius * radius;
+    System.out.println("Area of the circle: " + area);
+  }
+}
+
+class Sphere implements Shape {
+  final float PI = 3.14f;
+  float radius;
+
+  public void area() {
+    float area = 4 * PI * radius * radius;
+    System.out.println("Area of the sphere: " + area);
+  }
+}
+
+public class slip8A {
+  public static void main(String[] args) {
+    Circle circle = new Circle();
+    circle.radius = 5;
+    circle.area();
+
+    Sphere sphere = new Sphere();
+    sphere.radius = 10;
+    sphere.area();
+  }
+}
+
+B)Write a java program to display the files having extension .txt from a given directory
+
+import java.io.File;
+
+public class slip8B {
+    public static void main(String[] args) {
+        String directoryPath = "D:\\All Languages Programs\\Core Java"; // Replace with the actual directory path
+
+        File directory = new File(directoryPath);
+        File[] files = directory.listFiles();
+
+        for (File file : files) {
+            if (file.getName().endsWith(".txt")) {
+                System.out.println(file.getName());
+            }
+        }
+    }
+}
+
+
+
+slip 9
+
+A) Write a java Program to display following pattern:
+
+1
+
+0 1
+
+0 1 0
+
+1 0 1 0 
+
+public class slip9A {
+    public static void main(String[] args) {
+        int rows = 4;
+
+        for (int i = 0; i < rows; i++) {
+            int value = (i % 2 == 0) ? 1 : 0; 
+
+            for (int j = 0; j <= i; j++) {
+                System.out.print(value + " ");
+                value = 1 - value; 
+            }
+            System.out.println(); 
+        }}}
+
+B) Write a java program to validate PAN number and Mobile Number. If it is invalid then throw user defined Exception “Invalid Data”, otherwise display it. 
+
+import java.lang.reflect.InaccessibleObjectException;
+import java.util.*;
+class InvalidData extends Exception {
+    public InvalidData(String message) {
+        super(message);
+    }
+}
+
+public class slip9B {
+
+    public static void validatePAN(String panNumber) throws InvalidData {
+        if (!panNumber.matches("[A-Z]{5}[0-9]{4}[A-Z]{1}")) {
+            throw new InvalidData("Invalid PAN number");
+        }
+    }
+
+    public static void validateMobileNumber(String mobileNumber) throws InvalidData {
+        if (!mobileNumber.matches("^[0-9]{10}$")) {
+            throw new InvalidData("Invalid mobile number");
+        }
+    }
+
+    public static void main(String[] args) {
+        Scanner s=new Scanner(System.in);
+        try {
+            System.out.println("Enter Pan Number:");
+            String panNumber = s.next();
+            validatePAN(panNumber);
+            System.out.println("Valid PAN number: " + panNumber);
+
+        } catch (InvalidData e) {
+            System.out.println(e.getMessage());
+        }
+        try{
+        System.out.println("Enter Mobile Number:");
+        String mobileNumber = s.next();
+        validateMobileNumber(mobileNumber);
+        System.out.println("Valid mobile number: " + mobileNumber);
+    }catch(InvalidData r){
+            System.out.println(r.getMessage());
+        }
+    }
+}
+
+Slip no=10
+
+A) Write a java program to count the frequency of each character in a given string.
+
+import java.util.HashMap;
+import java.util.Map;
+public class slip10A {
+    public static void main(String[] args) {
+        String str = "Hello, World!";
+        Map<Character, Integer> frequencyMap = new HashMap<>();
+        for (char character : str.toCharArray()) {
+            if (frequencyMap.containsKey(character)) {
+                frequencyMap.put(character, frequencyMap.get(character) + 1);
+            } else {
+                frequencyMap.put(character, 1);
+            }
+        }
+        for (Map.Entry<Character, Integer> entry : frequencyMap.entrySet()) {
+            System.out.println("Character '" + entry.getKey() + "' appears " + entry.getValue() + " times.");
+        }
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#
